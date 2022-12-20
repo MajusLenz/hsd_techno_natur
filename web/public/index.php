@@ -91,11 +91,9 @@
         seekerFindsFungi();
 
         $page = "fungiDetail";
-        echo $page;
     }
     else {
         $page = "startseite";
-        echo $page;
     }
 
     // get all found fungi IDs:
@@ -109,49 +107,58 @@
     }
     catch (Throwable $e) {}
 
-    // get highscore:
+    // get rank in highscore:
     $allSeekersSorted = [];
+    $allFungisCount = 0;
     $seekerRank = -1;
     try {
-        $result = $mysqli->query(
+        if (count($foundFungiIds) == $maxFungiCount) {
+            $seekerRank = 1;
+        }
+        else {
+            $result = $mysqli->query(
                 "SELECT seeker_id, count(seeker_id) as foundFungisCount
-                FROM fungi_seeker 
+                FROM fungi_seeker
                 GROUP BY seeker_id
                 ORDER BY foundFungisCount DESC;"
-        );
-        $allSeekersSorted = $result->fetch_all(MYSQLI_ASSOC);
+            );
+            $allSeekersSorted = $result->fetch_all(MYSQLI_ASSOC);
 
-        $rankCounter = 1;
-        foreach ($allSeekersSorted as $seeker) {
-            if ($seeker["seeker_id"] == $seekerId) {
-                break;
+            $rankCounter = 1;
+            foreach ($allSeekersSorted as $seeker) {
+                if ($seeker["seeker_id"] == $seekerId) {
+                    break;
+                }
+                else {
+                    $rankCounter++;
+                }
             }
-            else {
-                $rankCounter++;
-            }
+            $seekerRank = $rankCounter;
         }
-        $seekerRank = $rankCounter;
     }
     catch (Throwable $e) {}
 
+    echo $page;
 
-
-?><!DOCTYPE html>
-<html>
+?>
+<!DOCTYPE html>
+<html lang="de">
     <head>
         <meta charset="utf-8">
         <title>Docker</title>
     </head>
     <body>
         <header>
+            <br><br><br><br><br>
             HEADER
-            BLA
+            BLA BLA
         </header>
-        <h1>fungi <?php echo $fungiId; ?></h1>
-        <h2>seeker <?php echo $seekerId; ?></h2>
+        <h1>fungi: <?php echo $fungiId; ?></h1>
+        <h2>seeker: <?php echo $seekerId; ?></h2>
+        <h3>seeker rank: <?php echo $seekerRank; ?></h3>
     <footer>
         FOOTER
-        BLA
+        BLA BLA
     </footer>
     </body>
 </html>
