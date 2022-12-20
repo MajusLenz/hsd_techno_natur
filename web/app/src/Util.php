@@ -5,12 +5,6 @@ namespace App\Acme;
 class Util {
     private array $acceptedUuidCharacters = ["a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-
-    public function getName()
-    {
-        return 'Nginx PHP MySQL';
-    }
-
     public function getRandomUuid($size = 32): string
     {
         $uuid = "";
