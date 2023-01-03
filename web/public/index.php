@@ -156,6 +156,13 @@
         <h1>fungi: <?php echo $fungiId; ?></h1>
         <h2>seeker: <?php echo $seekerId; ?></h2>
         <h3>seeker rank: <?php echo $seekerRank; ?></h3>
+
+        <h4>all found fungis: <?php var_dump($foundFungiIds); ?></h4>
+        <?php
+            foreach ($foundFungiIds as $foundFungiId) {
+                echo "<img src='assets/img/$foundFungiId.jpg' />";
+            }
+        ?>
     <footer>
         FOOTER
         BLA BLA
