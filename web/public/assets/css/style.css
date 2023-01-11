@@ -1,0 +1,68 @@
+@font-face {
+    font-family: futura-pt-book;
+    src: url("../fonts/Futura_PT/FuturaPTBook.otf");
+}
+@font-face {
+    font-family: futura-pt-bold;
+    src: url("../fonts/Futura_PT/FuturaPTBold.otf");
+}
+
+html {
+    font-family: futura-pt-book, Futura, sans-serif;
+    width: 100%;
+    background: #e4e4d3;
+}
+body {
+    background-image: url("../img/background.png");
+    background-repeat: repeat;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #f1e86f;
+}
+header h1 {
+    margin: 0;
+}
+header a {
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+header a img {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+main {
+    margin-top: 20px;
+}
+
+.page-toggle-area div {
+    display: block;
+}
+.page-toggle-area #page-toggle-right {
+    text-align: right;
+    margin-right: 15px;
+}
+.page-toggle-area #page-toggle-left {
+    margin-left: 11px;
+}
+.page-toggle-area .page-toggle-button {
+    border: 0;
+    background: transparent;
+    width: 90px;
+    cursor: pointer;
+}
+
+.content-section {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+}
+footer a {
+    color: black;
+}

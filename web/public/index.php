@@ -90,10 +90,10 @@
     if ($fungiId) {
         seekerFindsFungi();
 
-        $page = "fungiDetail";
+        $pageName = "fungi-detail";
     }
     else {
-        $page = "startseite";
+        $pageName = "landingpage";
     }
 
     // get all found fungi IDs:
@@ -137,35 +137,85 @@
         }
     }
     catch (Throwable $e) {}
-
-    echo $page;
-
 ?>
 <!DOCTYPE html>
 <html lang="de">
     <head>
         <meta charset="utf-8">
-        <title>Docker</title>
+        <title>Rhizom</title>
+        <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
         <header>
-            <br><br><br><br><br>
-            HEADER
-            BLA BLA
+            <h1>
+                <a href="/">
+                    <img alt="Rhizom" src="assets/img/rhizomlogo.svg">
+                </a>
+            </h1>
         </header>
-        <h1>fungi: <?php echo $fungiId; ?></h1>
-        <h2>seeker: <?php echo $seekerId; ?></h2>
-        <h3>seeker rank: <?php echo $seekerRank; ?></h3>
+        <main>
+            <section class="page-toggle-area">
+                <div id="page-toggle-right" style="<?php if($pageName == "fungi-detail") echo "display: none;"; ?>">
+                    <button class="page-toggle-button" id="page-toggle-button-right-arrow"
+                            type="button" onclick="togglePage(this);">
+                        <img src="assets/img/arrowright.svg" alt="Zur Startseite">
+                    </button>
+                </div>
+                <div id="page-toggle-left" style="<?php if($pageName == "landingpage") echo "display: none;"; ?>">
+                    <button class="page-toggle-button" id="page-toggle-button-left-arrow"
+                            type="button" onclick="togglePage(this);">
+                        <img src="assets/img/arrowleft.svg" alt="Zur Pilzübersicht">
+                    </button>
+                </div>
+            </section>
 
-        <h4>all found fungis: <?php var_dump($foundFungiIds); ?></h4>
-        <?php
-            foreach ($foundFungiIds as $foundFungiId) {
-                echo "<img src='assets/img/$foundFungiId.jpg' />";
-            }
-        ?>
-    <footer>
-        FOOTER
-        BLA BLA
-    </footer>
+            <section class="content-section" id="landingpage-section"
+                     style="<?php if($pageName == "fungi-detail") echo "display: none;"; ?>">
+                Landing Page!
+            </section>
+
+            <section class="content-section" id="fungi-detail-section"
+                     style="<?php if($pageName == "landingpage") echo "display: none;"; ?>">
+                fungi Detail!
+            </section>
+
+            <section class="test">
+                <h1>fungi: <?php echo $fungiId; ?></h1>
+                <h2>seeker: <?php echo $seekerId; ?></h2>
+                <h3>seeker rank: <?php echo $seekerRank; ?></h3>
+
+                <h4>all found fungis: <?php var_dump($foundFungiIds); ?></h4>
+                <?php
+                foreach ($foundFungiIds as $foundFungiId) {
+                    //echo "<img src='assets/img/fungi/$foundFungiId.jpg' />";
+                }
+                ?>
+            </section>
+        </main>
+        <footer>
+            <a href="/impressum.html">Impressum</a>
+        </footer>
     </body>
+    <script type="application/javascript">
+        function togglePage(element) {
+            var landingpageSection = document.getElementById("landingpage-section");
+            var fungiDetailSection = document.getElementById("fungi-detail-section");
+            var toggleRightDiv = document.getElementById("page-toggle-right");
+            var toggleLeftDiv = document.getElementById("page-toggle-left");
+
+            if (element.id === "page-toggle-button-left-arrow") {
+                toggleRightDiv.style.display = "block";
+                landingpageSection.style.display = "block";
+                toggleLeftDiv.style.display = "none";
+                fungiDetailSection.style.display = "none";
+            }
+            if (element.id === "page-toggle-button-right-arrow") {
+                toggleRightDiv.style.display = "none";
+                landingpageSection.style.display = "none";
+                toggleLeftDiv.style.display = "block";
+                fungiDetailSection.style.display = "block";
+            }
+
+        }
+    </script>
 </html>
