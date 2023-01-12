@@ -6,11 +6,14 @@
     font-family: futura-pt-bold;
     src: url("../fonts/Futura_PT/FuturaPTBold.otf");
 }
-
+::selection {
+    background-color: #f1e86f;
+}
 html {
     font-family: futura-pt-book, Futura, sans-serif;
     width: 100%;
     background: #e4e4d3;
+    font-size: 18pt;
 }
 body {
     background-image: url("../img/background.png");
@@ -60,9 +63,75 @@ main {
     text-align: center;
 }
 
+#landingpage-section .toggle-info-button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+#landingpage-section .toggle-info-button img {
+    width: 130px;
+}
+#landingpage-section .welcome-text {
+    transition: max-height 0.2s ease-in-out;
+    overflow: hidden;
+}
+#landingpage-section .info-text {
+    margin-right: 35px;
+    margin-left: 35px;
+    transition: max-height 0.2s ease-in-out;
+}
+#landingpage-section .welcome-image-area img {
+    display: inline-block;
+    width: 100%;
+}
+
+#fungi-detail-section .fungi-facts .fungi-numbers {
+    color: #364e31;
+    font-family: futura-pt-bold, Futura, sans-serif;
+}
+#fungi-detail-section .fungi-map-toggle div {
+    text-align: right;
+    color: #364e31;
+    font-family: futura-pt-bold, Futura, sans-serif;
+    font-size: 25pt;
+    padding-right: 20px;
+}
+#fungi-detail-section .fungi-map-toggle-text {
+    vertical-align: top;
+    position: relative;
+    top: -1px;
+}
+#fungi-detail-section .fungi-map-toggle-button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    vertical-align: bottom;
+}
+#fungi-detail-section .fungi-map-toggle-button img {
+    width: 70px;
+}
+#fungi-detail-section .fungi-map-images {
+    margin-top: 20px;
+}
+#fungi-detail-section .fungi-map-images-floor {
+    text-align: left;
+    position: relative;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+#fungi-detail-section .fungi-map-images-floor img {
+    display: inline-block;
+    width: 95%;
+}
+#fungi-detail-section .fungi-map-images-floor .fungi-map-images-foreground img {
+    position: absolute;
+    top: 0;
+}
+
 footer {
     text-align: center;
+    margin-top: 25px;
 }
 footer a {
-    color: black;
+    color: #364e31;
 }

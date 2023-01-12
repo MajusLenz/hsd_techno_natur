@@ -109,10 +109,11 @@
 
     // get rank in highscore:
     $allSeekersSorted = [];
-    $allFungisCount = 0;
+//    $allFungisCount = 0;  // todo remove
     $seekerRank = -1;
+    $foundFungisCount = count($foundFungiIds);
     try {
-        if (count($foundFungiIds) == $maxFungiCount) {
+        if ($foundFungisCount == $maxFungiCount) {
             $seekerRank = 1;
         }
         else {
@@ -177,20 +178,106 @@
 
             <section class="content-section" id="landingpage-section"
                      style="<?php if($pageName == "fungi-detail") echo "display: none;"; ?>">
-                Landing Page!
+                <p class="welcome-text" id="welcome-text">
+                    Willkommen bei Rhizom!<br>
+                    Es ist Zeit für eine<br>Pilzwanderung.
+                </p>
+                <div class="info-area">
+                    <div class="info-button-area">
+                        <button id="show-info-button" class="toggle-info-button" type="button"
+                                onclick="toggleInfo(this)" >
+                            <img src="assets/img/infos.png" alt="Infos">
+                        </button>
+                        <button id="hide-info-button" class="toggle-info-button" type="button"
+                                onclick="toggleInfo(this)" style="display: none;">
+                            <img src="assets/img/back.png" alt="Infos">
+                        </button>
+                    </div>
+                    <p class="info-text" id="info-text" style="max-height: 0; overflow: hidden;">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
+                <div class="welcome-image-area" id="welcome-image-area">
+                    <img src="assets/img/favicon/android-chrome-512x512.png" alt="scan die Pilze!"/>
+                </div>
             </section>
 
             <section class="content-section" id="fungi-detail-section"
                      style="<?php if($pageName == "landingpage") echo "display: none;"; ?>">
-                fungi Detail!
+
+                <p class="fungi-facts">
+                    <span class="found-fungis">
+                        Du hast
+                        <span class="fungi-numbers">
+                            <?php echo "$foundFungisCount/$maxFungiCount" ?>
+                        </span>
+                        Pilze gefunden.
+                    </span>
+                    <br/>
+                    <span class="seeker-rank">
+                        Du bist auf
+                        <span class="fungi-numbers">
+                            Platz
+                            <?php echo "$seekerRank" ?>
+                        </span>
+                        im Highscore.
+                    </span>
+                </p>
+                <div class="fungi-map">
+                    <p class="map-info-text">
+                        Du bist Teil unseres großen<br>
+                        Mycel-Netzwerks:
+                    </p>
+                    <div class="fungi-map-toggle">
+                        <div class="fungi-map-toggle-eg" id="fungi-map-toggle-eg">
+                            <span class="fungi-map-toggle-text">EG</span>
+                            <button type="button" class="fungi-map-toggle-button" id="eg-toggle-button"
+                            onclick="toggleMap(this)">
+                                <img src="assets/img/toggleleft.svg" alt="EG">
+                            </button>
+                        </div>
+                        <div class="fungi-map-toggle-1og" id="fungi-map-toggle-1og">
+                            <span class="fungi-map-toggle-text">1.OG</span>
+                            <button type="button" class="fungi-map-toggle-button" id="1og-toggle-button"
+                                    onclick="toggleMap(this)">
+                                <img src="assets/img/toggleright.svg" alt="1. OG">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="fungi-map-images">
+                        <div class="fungi-map-images-floor" id="fungi-map-images-eg">
+                            <div class="fungi-map-images-background">
+                                <img src='assets/img/fungiMap/map.png' alt=''/>
+                            </div>
+                            <div class="fungi-map-images-foreground">
+                                <?php
+                                foreach ($foundFungiIds as $foundFungiId) {
+                                    echo "<img src='assets/img/fungiMap/$foundFungiId.jpg' alt=''/>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="fungi-map-images-floor" id="fungi-map-images-1og">
+                            <div class="fungi-map-images-background">
+                                <img src='assets/img/fungiMap/map.png' alt=''/>
+                            </div>
+                            <div class="fungi-map-images-foreground">
+                                <?php
+                                foreach ($foundFungiIds as $foundFungiId) {
+                                    echo "<img src='assets/img/fungiMap/$foundFungiId.jpg' alt=''/>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="test">
-                <h1>fungi: <?php echo $fungiId; ?></h1>
-                <h2>seeker: <?php echo $seekerId; ?></h2>
-                <h3>seeker rank: <?php echo $seekerRank; ?></h3>
-
-                <h4>all found fungis: <?php var_dump($foundFungiIds); ?></h4>
+<!--                <h1>fungi: --><?php //echo $fungiId; ?><!--</h1>-->
+<!--                <h2>seeker: --><?php //echo $seekerId; ?><!--</h2>-->
+<!--                <h3>seeker rank: --><?php //echo $seekerRank; ?><!--</h3>-->
+<!--                <h4>all found fungis: --><?php //var_dump($foundFungiIds); ?><!--</h4>-->
                 <?php
                 foreach ($foundFungiIds as $foundFungiId) {
                     //echo "<img src='assets/img/fungi/$foundFungiId.jpg' />";
@@ -203,17 +290,33 @@
         </footer>
     </body>
     <script type="application/javascript">
-        function togglePage(element) {
-            var landingpageSection = document.getElementById("landingpage-section");
-            var fungiDetailSection = document.getElementById("fungi-detail-section");
-            var toggleRightDiv = document.getElementById("page-toggle-right");
-            var toggleLeftDiv = document.getElementById("page-toggle-left");
+        var landingpageSection = document.getElementById("landingpage-section");
+        var fungiDetailSection = document.getElementById("fungi-detail-section");
+        var toggleRightDiv = document.getElementById("page-toggle-right");
+        var toggleLeftDiv = document.getElementById("page-toggle-left");
 
+        var welcomeText = document.getElementById("welcome-text");
+        var infoText = document.getElementById("info-text");
+        var welcomeImageArea = document.getElementById("welcome-image-area");
+        var showInfoButton = document.getElementById("show-info-button");
+        var hideInfoButton = document.getElementById("hide-info-button");
+
+        var toggleAreaEg = document.getElementById("fungi-map-toggle-eg");
+        var ToggleArea1og = document.getElementById("fungi-map-toggle-1og");
+        var fungiMapImagesEg = document.getElementById("fungi-map-images-eg");
+        var fungiMapImages1og = document.getElementById("fungi-map-images-1og");
+
+        function togglePage(element) {
             if (element.id === "page-toggle-button-left-arrow") {
                 toggleRightDiv.style.display = "block";
                 landingpageSection.style.display = "block";
                 toggleLeftDiv.style.display = "none";
                 fungiDetailSection.style.display = "none";
+
+                // init accordion functionality of landingpage:
+                if (showInfoButton.style.display != "none") {
+                    welcomeText.style.maxHeight = welcomeText.scrollHeight + "px";
+                }
             }
             if (element.id === "page-toggle-button-right-arrow") {
                 toggleRightDiv.style.display = "none";
@@ -221,7 +324,41 @@
                 toggleLeftDiv.style.display = "block";
                 fungiDetailSection.style.display = "block";
             }
-
         }
+
+        function toggleInfo(element) {
+            if (element.id === "show-info-button") {
+                showInfoButton.style.display = "none";
+                hideInfoButton.style.display = "initial";
+                welcomeImageArea.style.display = "none";
+                welcomeText.style.maxHeight = 0;
+                infoText.style.maxHeight = infoText.scrollHeight + "px";
+            }
+            if (element.id === "hide-info-button") {
+                showInfoButton.style.display = "initial";
+                hideInfoButton.style.display = "none";
+                welcomeImageArea.style.display = "initial";
+                welcomeText.style.maxHeight = welcomeText.scrollHeight + "px";
+                infoText.style.maxHeight = 0;
+            }
+        }
+
+        function toggleMap(element) {
+            if (element.id === "eg-toggle-button") {
+                toggleAreaEg.style.display = "none";
+                ToggleArea1og.style.display = "block";
+                fungiMapImagesEg.style.display = "none";
+                fungiMapImages1og.style.display = "block";
+            }
+            if (element.id === "1og-toggle-button") {
+                toggleAreaEg.style.display = "block";
+                ToggleArea1og.style.display = "none";
+                fungiMapImagesEg.style.display = "block";
+                fungiMapImages1og.style.display = "none";
+            }
+        }
+
+        // init accordion functionality of landingpage:
+        welcomeText.style.maxHeight = welcomeText.scrollHeight + "px";
     </script>
 </html>
