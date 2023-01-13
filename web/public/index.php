@@ -5,8 +5,12 @@
 
     $mysqli = new mysqli("mysql", "dev", "dev", "fungi_data");
 
+    // fungiIDs <= $floorLimit are in EG, fungiIDs > $floorLimit are in 1.OG
+    $floorLimit = 3; // TODO update when fungis are finally placed!
+
     $fungiId = null;
     $fungiUuid = null;
+    $floor = 0;
     $seekerId = null;
     $seekerUuid = null;
 
@@ -82,6 +86,7 @@
             $fungi = $result->fetch_assoc();
             if ($fungi) {
                 $fungiId = $fungi["id"];
+                $floor = $fungi["floor"];
             }
         }
         catch (Throwable $e) {}
@@ -89,7 +94,6 @@
 
     if ($fungiId) {
         seekerFindsFungi();
-
         $pageName = "fungi-detail";
     }
     else {
@@ -107,9 +111,25 @@
     }
     catch (Throwable $e) {}
 
+    // get all fungi IDs ordered by floor:
+    $allFungiIdsEg = [];
+    $allFungiIds1og = [];
+    try {
+        $result = $mysqli->query("SELECT * FROM fungi");
+        $fungis = $result->fetch_all(MYSQLI_ASSOC);
+        foreach ($fungis as $fungi) {
+            if ($fungi["floor"] == 0) {
+                $allFungiIdsEg[] = $fungi["id"];
+            }
+            elseif ($fungi["floor"] == 1) {
+                $allFungiIds1og[] = $fungi["id"];
+            }
+        }
+    }
+    catch (Throwable $e) {}
+
     // get rank in highscore:
     $allSeekersSorted = [];
-//    $allFungisCount = 0;  // todo remove
     $seekerRank = -1;
     $foundFungisCount = count($foundFungiIds);
     try {
@@ -229,14 +249,16 @@
                         Mycel-Netzwerks:
                     </p>
                     <div class="fungi-map-toggle">
-                        <div class="fungi-map-toggle-eg" id="fungi-map-toggle-eg">
+                        <div class="fungi-map-toggle-eg" id="fungi-map-toggle-eg"
+                        style="<?php if($floor == 1) echo 'display: none;' ?>">
                             <span class="fungi-map-toggle-text">EG</span>
                             <button type="button" class="fungi-map-toggle-button" id="eg-toggle-button"
                             onclick="toggleMap(this)">
                                 <img src="assets/img/toggleleft.svg" alt="EG">
                             </button>
                         </div>
-                        <div class="fungi-map-toggle-1og" id="fungi-map-toggle-1og">
+                        <div class="fungi-map-toggle-1og" id="fungi-map-toggle-1og"
+                             style="<?php if($floor == 0) echo 'display: none;' ?>">
                             <span class="fungi-map-toggle-text">1.OG</span>
                             <button type="button" class="fungi-map-toggle-button" id="1og-toggle-button"
                                     onclick="toggleMap(this)">
@@ -245,26 +267,32 @@
                         </div>
                     </div>
                     <div class="fungi-map-images">
-                        <div class="fungi-map-images-floor" id="fungi-map-images-eg">
+                        <div class="fungi-map-images-floor" id="fungi-map-images-eg"
+                             style="<?php if($floor == 1) echo 'display: none;' ?>">
                             <div class="fungi-map-images-background">
-                                <img src='assets/img/fungiMap/map.png' alt=''/>
+                                <img src='assets/img/fungiMap/mapEg.png' alt=''/>
                             </div>
                             <div class="fungi-map-images-foreground">
                                 <?php
                                 foreach ($foundFungiIds as $foundFungiId) {
-                                    echo "<img src='assets/img/fungiMap/$foundFungiId.jpg' alt=''/>";
+                                    if (in_array($foundFungiId, $allFungiIdsEg)) {
+                                        echo "<img src='assets/img/fungiMap/$foundFungiId.jpg' alt=''/>";
+                                    }
                                 }
                                 ?>
                             </div>
                         </div>
-                        <div class="fungi-map-images-floor" id="fungi-map-images-1og">
+                        <div class="fungi-map-images-floor" id="fungi-map-images-1og"
+                             style="<?php if($floor == 0) echo 'display: none;' ?>">
                             <div class="fungi-map-images-background">
-                                <img src='assets/img/fungiMap/map.png' alt=''/>
+                                <img src='assets/img/fungiMap/map1og.png' alt=''/>
                             </div>
                             <div class="fungi-map-images-foreground">
                                 <?php
                                 foreach ($foundFungiIds as $foundFungiId) {
-                                    echo "<img src='assets/img/fungiMap/$foundFungiId.jpg' alt=''/>";
+                                    if (in_array($foundFungiId, $allFungiIds1og)) {
+                                        echo "<img src='assets/img/fungiMap/$foundFungiId.jpg' alt=''/>";
+                                    }
                                 }
                                 ?>
                             </div>
@@ -273,22 +301,19 @@
                 </div>
             </section>
 
-            <section class="test">
-<!--                <h1>fungi: --><?php //echo $fungiId; ?><!--</h1>-->
-<!--                <h2>seeker: --><?php //echo $seekerId; ?><!--</h2>-->
-<!--                <h3>seeker rank: --><?php //echo $seekerRank; ?><!--</h3>-->
-<!--                <h4>all found fungis: --><?php //var_dump($foundFungiIds); ?><!--</h4>-->
-                <?php
-                foreach ($foundFungiIds as $foundFungiId) {
-                    //echo "<img src='assets/img/fungi/$foundFungiId.jpg' />";
-                }
-                ?>
+            <section class="test" style="display: none;">
+                <h1>fungi: <?php echo $fungiId; ?></h1>
+                <h2>seeker: <?php echo $seekerId; ?></h2>
+                <h3>seeker rank: <?php echo $seekerRank; ?></h3>
+                <h4>all found fungis: <?php var_dump($foundFungiIds); ?></h4>
             </section>
         </main>
         <footer>
             <a href="/impressum.html">Impressum</a>
         </footer>
     </body>
+
+
     <script type="application/javascript">
         var landingpageSection = document.getElementById("landingpage-section");
         var fungiDetailSection = document.getElementById("fungi-detail-section");

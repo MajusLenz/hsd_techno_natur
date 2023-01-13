@@ -123,6 +123,9 @@ main {
     display: inline-block;
     width: 95%;
 }
+#fungi-detail-section .fungi-map-images-floor .fungi-map-images-background img {
+    width: 100%;
+}
 #fungi-detail-section .fungi-map-images-floor .fungi-map-images-foreground img {
     position: absolute;
     top: 0;
