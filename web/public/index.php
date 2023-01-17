@@ -197,8 +197,8 @@
             <section class="content-section" id="landingpage-section"
                      style="<?php if($pageName == "fungi-detail") echo "display: none;"; ?>">
                 <p class="welcome-text" id="welcome-text">
-                    Willkommen bei Rhizom!<br>
-                    Es ist Zeit für eine<br>Pilzwanderung.
+                    Willkommen bei Rhizom,<br>
+                    dem interaktiven<br>Pilz-Netzwerk!
                 </p>
                 <div class="info-area">
                     <div class="info-button-area">
@@ -212,20 +212,30 @@
                         </button>
                     </div>
                     <p class="info-text" id="info-text" style="max-height: 0; overflow: hidden;">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                        "Als Myzel wird die Gesamtheit aller fadenförmigen Zellen eines Pilzes bezeichnet. Im Sprachgebrauch wird nur der Fruchtkörper als Pilz bezeichnet, wobei der eigentliche Pilz dieses unterirdische Geflecht aus Zellen ist."
+                        <br>
+                        <br>
+                        Im Erdgeschoss und der 1. Etage des Gebäudes 6 der HSD ist auch ein Myzel gewachsen. Findest Du die <?php echo $maxFungiCount; ?> Pilze, die daraus wachsen?
+                        <br>
+                        Scanne sie ein und werde Teil der Pilzkultur!
+                        <br>
+                        <br>
+                        Auf die Pilze, fertig, LOS!
+                        <br>
+                        <br>
                     </p>
                 </div>
                 <div class="welcome-image-area" id="welcome-image-area">
-                    <img src="assets/img/favicon/android-chrome-512x512.png" alt="scan die Pilze!"/>
+                    <img src="assets/img/Pilz_Plakat5_q.png" alt="scan die Pilze!"
+                    style="width: 80%;"/>
                 </div>
             </section>
 
             <section class="content-section" id="fungi-detail-section"
                      style="<?php if($pageName == "landingpage") echo "display: none;"; ?>">
-
                 <p class="fungi-facts">
                     <span class="found-fungis">
-                        Du hast
+                        Prima, Du hast
                         <span class="fungi-numbers">
                             <?php echo "$foundFungisCount/$maxFungiCount" ?>
                         </span>
@@ -243,8 +253,8 @@
                 </p>
                 <div class="fungi-map">
                     <p class="map-info-text">
-                        Du bist Teil unseres großen<br>
-                        Mycel-Netzwerks:
+                        Finde sie alle und werde Teil unseres<br>
+                        großen Pilz-Netzwerks:
                     </p>
                     <div class="fungi-map-toggle">
                         <div class="fungi-map-toggle-eg" id="fungi-map-toggle-eg"

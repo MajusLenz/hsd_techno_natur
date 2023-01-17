@@ -15,6 +15,12 @@ html {
     background: #e4e4d3;
     font-size: 18pt;
 }
+@media screen and (max-width: 800px) {
+    html{
+        background: none;
+    }
+}
+
 body {
     background-image: url("../img/background.png");
     background-repeat: repeat;
