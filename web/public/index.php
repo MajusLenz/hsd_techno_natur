@@ -1,12 +1,10 @@
 <?php
 
     include '../app/vendor/autoload.php';
+    $configs = include('../app/config.php');
     $util = new App\Acme\Util();
 
-    $mysqli = new mysqli("mysql", "dev", "dev", "fungi_data");
-
-    // fungiIDs <= $floorLimit are in EG, fungiIDs > $floorLimit are in 1.OG
-    $floorLimit = 3; // TODO update when fungis are finally placed!
+    $mysqli = new mysqli($configs['host'], $configs['user'], $configs['pw'], $configs['db']);
 
     $fungiId = null;
     $fungiUuid = null;
@@ -20,7 +18,7 @@
         $seekerUuid = $util->getRandomUuid();
 
         try {
-            $stmt = $mysqli->prepare("INSERT INTO seeker(uuid) VALUES (?)");
+            $stmt = $mysqli->prepare("INSERT INTO seeker (uuid) VALUES (?)");
             $stmt->bind_param("s", $seekerUuid);
             $stmt->execute();
 
