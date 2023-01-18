@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 09. Dez 2022 um 14:34
+-- Erstellungszeit: 18. Jan 2023 um 16:41
 -- Server-Version: 8.0.21
 -- PHP-Version: 8.0.19
 
@@ -18,9 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `web368db_rhizom`
+-- Datenbank: `fungi_data`
 --
-USE `web368db_rhizom`;
 
 -- --------------------------------------------------------
 
@@ -41,11 +40,26 @@ CREATE TABLE `fungi` (
 --
 
 INSERT INTO `fungi` (`id`, `uuid`, `floor`, `created_at`, `updated_at`) VALUES
-(1, '1a3645d1d9d345bba3b0298ad6d32a27', 1, '2022-12-09 14:18:25', NULL),
-(2, '1a3645d1d9d345bba3b0298ad6d32a11', 1, '2022-12-09 14:18:25', NULL),
-(3, '1a3645d1d9d345bba3b0298ad6d32a22', 0, '2022-12-09 14:19:02', NULL),
-(4, '1a3645d1d9d345bba3b0298ad6d32a33', 0, '2022-12-09 14:19:02', NULL),
-(5, '1a3645d1d9d345bba3b0298ad6d32a55', 1, '2022-12-09 14:19:20', NULL);
+(1, 'b9969ddc974a11ed921077026793e341', 0, '2023-01-18 16:27:28', NULL),
+(2, 'b9969ecc974a11ed92117bf9c8afc0c0', 0, '2023-01-18 16:29:28', '2023-01-18 16:29:45'),
+(3, 'b9969ef4974a11ed92122bf6d413e8d6', 0, '2023-01-18 16:29:28', '2023-01-18 16:29:48'),
+(4, 'b9969f12974a11ed9213ff6b3c3203d0', 0, '2023-01-18 16:29:28', '2023-01-18 16:29:51'),
+(5, 'b9969f30974a11ed9214afcb49c1eca6', 0, '2023-01-18 16:29:28', '2023-01-18 16:29:53'),
+(6, 'b9969f4e974a11ed9215ef2faca246c9', 0, '2023-01-18 16:29:28', '2023-01-18 16:29:54'),
+(7, 'b9969f6c974a11ed9216a3c355e301d9', 0, '2023-01-18 16:29:28', '2023-01-18 16:29:56'),
+(8, 'b9969f8a974a11ed9217c345958a6b1a', 0, '2023-01-18 16:29:28', '2023-01-18 16:29:59'),
+(9, 'b9969fa8974a11ed921823a85801f904', 0, '2023-01-18 16:30:34', NULL),
+(10, 'b9969fc6974a11ed9219df18e3c69141', 0, '2023-01-18 16:30:34', NULL),
+(11, 'b9969fe4974a11ed921a6b3f21e05be4', 1, '2023-01-18 16:36:32', NULL),
+(12, 'b996a002974a11ed921ba3f1f754681e', 1, '2023-01-18 16:36:32', NULL),
+(13, 'b996a016974a11ed921cf7dc0f96d48a', 1, '2023-01-18 16:36:32', NULL),
+(14, 'b996a034974a11ed921d63234446a195', 1, '2023-01-18 16:36:32', NULL),
+(15, 'b996a052974a11ed921ea32236f1533a', 1, '2023-01-18 16:36:32', NULL),
+(16, 'b996a070974a11ed921ff361c83396aa', 1, '2023-01-18 16:36:32', NULL),
+(17, 'b996a08e974a11ed9220c300dde4b3e5', 1, '2023-01-18 16:36:32', NULL),
+(18, 'b996a0ac974a11ed9221ff56ed481f90', 1, '2023-01-18 16:36:32', NULL),
+(19, 'b996a0ca974a11ed92229b63725e78f8', 1, '2023-01-18 16:36:49', NULL),
+(20, 'b996a0e8974a11ed9223ff4a9d16129e', 1, '2023-01-18 16:36:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -61,15 +75,6 @@ CREATE TABLE `fungi_seeker` (
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Daten für Tabelle `fungi_seeker`
---
-
-INSERT INTO `fungi_seeker` (`id`, `fungi_id`, `seeker_id`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, '2022-12-09 14:20:56', NULL),
-(2, 3, 1, '2022-12-09 14:24:24', NULL),
-(3, 3, 2, '2022-12-09 14:24:48', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -82,15 +87,6 @@ CREATE TABLE `seeker` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Daten für Tabelle `seeker`
---
-
-INSERT INTO `seeker` (`id`, `uuid`, `created_at`, `updated_at`) VALUES
-(1, '1a3645d1d9d345bba3b0298ad6d32aaa', '2022-12-09 14:19:59', NULL),
-(2, '1a3645d1d9d345bba3b0298ad6d32bbb', '2022-12-09 14:19:59', NULL),
-(3, '1a3645d1d9d345bba3b0298ad6d32ccc', '2022-12-09 14:20:11', NULL);
 
 --
 -- Indizes der exportierten Tabellen
@@ -126,19 +122,19 @@ ALTER TABLE `seeker`
 -- AUTO_INCREMENT für Tabelle `fungi`
 --
 ALTER TABLE `fungi`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT für Tabelle `fungi_seeker`
 --
 ALTER TABLE `fungi_seeker`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT für Tabelle `seeker`
 --
 ALTER TABLE `seeker`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints der exportierten Tabellen
