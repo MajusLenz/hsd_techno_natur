@@ -12,19 +12,19 @@
 html {
     font-family: futura-pt-book, Futura, sans-serif;
     width: 100%;
-    background: #e4e4d3;
-    font-size: 18pt;
+    /*background: #e4e4d3;*/
+    font-size: 40pt;
 }
 @media screen and (max-width: 800px) {
     html{
-        background: none;
+        /*background: none;*/
     }
 }
 
 body {
     background-image: url("../img/background.png");
     background-repeat: repeat;
-    max-width: 800px;
+    /*max-width: 800px;*/
     margin: 0 auto;
 }
 
@@ -35,17 +35,16 @@ header h1 {
     margin: 0;
 }
 header a {
-    width: 200px;
+    width: 370px;
     margin: 0 auto;
     display: block;
 }
 header a img {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 12px;
 }
 
 main {
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 .page-toggle-area div {
@@ -53,20 +52,21 @@ main {
 }
 .page-toggle-area #page-toggle-right {
     text-align: right;
-    margin-right: 15px;
+    margin-right: 30px;
 }
 .page-toggle-area #page-toggle-left {
-    margin-left: 11px;
+    margin-left: 25px;
 }
 .page-toggle-area .page-toggle-button {
     border: 0;
     background: transparent;
-    width: 90px;
+    width: 170px;
     cursor: pointer;
 }
 
 .content-section {
     text-align: center;
+    margin-top: 100px;
 }
 
 #landingpage-section .toggle-info-button {
@@ -75,15 +75,15 @@ main {
     cursor: pointer;
 }
 #landingpage-section .toggle-info-button img {
-    width: 130px;
+    width: 300px;
 }
 #landingpage-section .welcome-text {
     transition: max-height 0.2s ease-in-out;
     overflow: hidden;
 }
 #landingpage-section .info-text {
-    margin-right: 35px;
-    margin-left: 35px;
+    margin-right: 45px;
+    margin-left: 45px;
     transition: max-height 0.2s ease-in-out;
 }
 #landingpage-section .welcome-image-area img {
@@ -95,12 +95,15 @@ main {
     color: #364e31;
     font-family: futura-pt-bold, Futura, sans-serif;
 }
+#fungi-detail-section .fungi-map-toggle {
+    margin-top: 100px;
+}
 #fungi-detail-section .fungi-map-toggle div {
     text-align: right;
     color: #364e31;
     font-family: futura-pt-bold, Futura, sans-serif;
-    font-size: 25pt;
-    padding-right: 20px;
+    font-size: 60pt;
+    padding-right: 40px;
 }
 #fungi-detail-section .fungi-map-toggle-text {
     vertical-align: top;
@@ -114,20 +117,20 @@ main {
     vertical-align: bottom;
 }
 #fungi-detail-section .fungi-map-toggle-button img {
-    width: 70px;
+    width: 160px;
 }
 #fungi-detail-section .fungi-map-images {
-    margin-top: 20px;
+    margin-top: 35px;
 }
 #fungi-detail-section .fungi-map-images-floor {
     text-align: left;
     position: relative;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
+    padding-left: 4%;
+    padding-right: 4%;
 }
 #fungi-detail-section .fungi-map-images-floor img {
     display: inline-block;
-    width: 95%;
+    width: 92%;
 }
 #fungi-detail-section .fungi-map-images-floor .fungi-map-images-background img {
     width: 100%;
@@ -138,8 +141,13 @@ main {
 }
 
 footer {
-    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin-top: 25px;
+    display: block;
+    text-align: center;
 }
 footer a {
     color: #364e31;
