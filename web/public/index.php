@@ -236,7 +236,8 @@
                      style="<?php if($pageName == "landingpage") echo "display: none;"; ?>">
                 <p class="fungi-facts">
                     <span class="found-fungis">
-                        Prima, Du hast
+                        <?php if($foundFungisCount > 0) echo "Prima, "; ?>
+                        Du hast
                         <span class="fungi-numbers">
                             <?php echo "$foundFungisCount/$maxFungiCount" ?>
                         </span>

@@ -16,6 +16,7 @@ html {
     font-size: 40pt;
     background-image: url("../img/background_5.png");
     background-repeat: repeat;
+    background-size: 100% auto;
 }
 /*
 @media screen and (max-width: 800px) {
