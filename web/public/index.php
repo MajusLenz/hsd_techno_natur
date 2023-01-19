@@ -1,7 +1,8 @@
 <?php
 
-    include '../app/vendor/autoload.php';
+//    include '../app/vendor/autoload.php';
     $configs = include('../app/config.php');
+    include('../app/src/Util.php');
     $util = new App\Acme\Util();
 
     $mysqli = new mysqli($configs['host'], $configs['user'], $configs['pw'], $configs['db']);
