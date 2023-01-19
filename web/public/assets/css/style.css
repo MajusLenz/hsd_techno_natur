@@ -15,14 +15,16 @@ html {
     /*background: #e4e4d3;*/
     font-size: 40pt;
 }
+/*
 @media screen and (max-width: 800px) {
     html{
-        /*background: none;*/
+        background: none;
     }
 }
+*/
 
 body {
-    background-image: url("../img/background.png");
+    background-image: url("../img/background_5.png");
     background-repeat: repeat;
     /*max-width: 800px;*/
     margin: 0 auto;
