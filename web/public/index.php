@@ -395,5 +395,9 @@
 
         // init accordion functionality of landingpage:
         welcomeText.style.maxHeight = welcomeText.scrollHeight + "px";
+
+        // fix white bar at bottom of shitty mobile browsers:
+        var html = document.getElementsByTagName("html").item(0);
+        html.style.height = html.scrollHeight + 150 + "px";
     </script>
 </html>
