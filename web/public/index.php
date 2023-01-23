@@ -286,7 +286,7 @@
                                 <?php
                                 foreach ($foundFungiIds as $foundFungiId) {
                                     if (in_array($foundFungiId, $allFungiIdsEg)) {
-                                        echo "<img src='assets/img/fungiMap/$foundFungiId.jpg' alt=''/>";
+                                        echo "<img src='assets/img/fungiMap/$foundFungiId.png' alt=''/>";
                                     }
                                 }
                                 ?>
@@ -301,7 +301,7 @@
                                 <?php
                                 foreach ($foundFungiIds as $foundFungiId) {
                                     if (in_array($foundFungiId, $allFungiIds1og)) {
-                                        echo "<img src='assets/img/fungiMap/$foundFungiId.jpg' alt=''/>";
+                                        echo "<img src='assets/img/fungiMap/$foundFungiId.png' alt=''/>";
                                     }
                                 }
                                 ?>
